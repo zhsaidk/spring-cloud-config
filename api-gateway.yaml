@@ -1,0 +1,27 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: hello
+          uri: lb://eureka-client
+          predicates:
+            - Method=GET
+            - Path=/main/hello
+
+        - id: testHello
+          uri: lb://eureka-client-1
+          predicates:
+            - Method=GET
+            - Path=/test/hello
+
