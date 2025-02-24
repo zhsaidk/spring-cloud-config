@@ -1,6 +1,6 @@
 management:
   endpoints:
     web:
-      base-path: /act
+      base-path: /actuator
       exposure:
         include: "*"
